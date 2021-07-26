@@ -30,7 +30,7 @@ remote_command="set -e ; log() { echo '>> [remote]' \$@ ; } ; cleanup() { log 'R
 echo ">> [local] Connecting to remote host."
 echo ">> [local] Pushing env file."
 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-    -p "$SSH_PORT" /tmp/.env "$SSH_USER@$SSH_HOST/tmp/.env"
+    -p "$SSH_PORT" /tmp/.env "$SSH_USER@$SSH_HOST:/tmp/.env"
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
   "$SSH_USER@$SSH_HOST" -p "$SSH_PORT" \
   "$remote_command" \
