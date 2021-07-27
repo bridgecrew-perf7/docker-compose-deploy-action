@@ -20,6 +20,9 @@ tar cjvf /tmp/workspace.tar.bz2 --exclude .git .
 log "Creating env file"
 echo $DOCKER_COMPOSE_ENV >> /tmp/.env
 
+log "Printing env file"
+cat /tmp/.env
+
 log "Launching ssh agent."
 eval `ssh-agent -s`
 
