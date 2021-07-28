@@ -10,6 +10,7 @@ inputs:
   ssh_port:
     description: Remote SSH port.
     default: 22
+    required: false
   ssh_user:
     description: Remote user name.
     required: true
@@ -19,9 +20,11 @@ inputs:
   docker_compose_filename:
     description: Docker compose file to use
     default: docker-compose.yml
+    required: false
   docker_compose_env:
     description: Docker compose environment
     default: ""
+    required: false
 runs:
   using: docker
   image: Dockerfile
