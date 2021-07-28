@@ -18,7 +18,7 @@ log "Packing workspace into archive to transfer onto remote machine."
 tar cjvf /tmp/workspace.tar.bz2 --exclude .git .
 
 log "Creating env file"
-echo $DOCKER_COMPOSE_ENV >> /tmp/.env
+echo  -e $DOCKER_COMPOSE_ENV >> /tmp/.env
 
 log "Printing env file"
 cat /tmp/.env
@@ -33,7 +33,7 @@ remote_command="set -e ; log() { echo '>> [remote]' \$@ ; } ; cleanup() { log 'R
 echo ">> [local] Connecting to remote host."
 echo ">> [local] Pushing env file."
 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-    -p "$SSH_PORT" /tmp/.env "$SSH_USER@$SSH_HOST:/tmp/.env"
+    -P "$SSH_PORT" /tmp/.env "$SSH_USER@$SSH_HOST:/tmp/"
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
   "$SSH_USER@$SSH_HOST" -p "$SSH_PORT" \
   "$remote_command" \
